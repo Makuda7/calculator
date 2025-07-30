@@ -1,0 +1,119 @@
+<!DOCTYPE html> <!-- Tells the browser this is an HTML5 document -->
+<html lang="en"> <!-- Sets the language of the document to English -->
+<head>
+    <meta charset="UTF-8"> <!-- Sets character encoding to UTF-8 (standard for text) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Makes it responsive on small screens -->
+    <title>Document</title> <!-- Title that appears in the browser tab -->
+    <link rel="stylesheet" href="style.css"> <!-- Links to an external CSS file for styling -->
+</head>
+<body>
+    <!-- Table that looks like a calculator layout -->
+    <table border="1"> <!-- Adds border to the table -->
+
+        <!-- Display row -->
+        <tr>
+            <td colspan="4"> <!-- One cell that spans across all 4 columns -->
+                <input type="text" id="inputBox" value="0"> <!-- Display box showing calculator input/output -->
+            </td>
+        </tr>
+
+        <!-- First row of buttons -->
+        <tr>
+            <td class="digiBtn" onclick="buttonClicked(7)">7</td> <!-- Calls function with value 7 -->
+            <td class="digiBtn" onclick="buttonClicked(8)">8</td>
+            <td class="digiBtn" onclick="buttonClicked(9)">9</td>
+            <td class="operatorBtn" onclick="operatorClicked('x')">x</td> <!-- Calls function with multiplication symbol -->
+        </tr>
+
+        <!-- Second row of buttons -->
+        <tr>
+            <td class="digiBtn" onclick="buttonClicked(4)">4</td>
+            <td class="digiBtn" onclick="buttonClicked(5)">5</td>
+            <td class="digiBtn" onclick="buttonClicked(6)">6</td>
+            <td class="operatorBtn" onclick="operatorClicked('-')">-</td> <!-- Subtraction symbol -->
+        </tr>
+
+        <!-- Third row of buttons -->
+        <tr>
+            <td class="digiBtn" onclick="buttonClicked(1)">1</td>
+            <td class="digiBtn" onclick="buttonClicked(2)">2</td>
+            <td class="digiBtn" onclick="buttonClicked(3)">3</td>
+            <td class="operatorBtn" onclick="operatorClicked('+')">+</td> <!-- Addition symbol -->
+        </tr> 
+
+        <!-- Fourth row -->
+        <tr>
+            <td class="digiBtn" colspan="2" onclick="buttonClicked(0)">0</td> <!-- 0 button spans 2 columns -->
+            <td class="acOp" onclick="acBtn()">AC</td> <!-- Clear button (not working yet) -->
+            <td class="operatorBtn" onclick="operatorClicked('/')">/</td> <!-- Division symbol (not functional yet) -->
+        </tr>
+
+        <!-- Equals row -->
+        <tr>
+            <td class="equalsBtn" onclick="equalsClicked()" colspan="4">=</td> <!-- Equals button (not functional yet) -->
+        </tr>
+    </table>
+
+    <!-- JavaScript section -->
+    <script>
+        var newLine = true; 
+        // Flag to check if it's a new entry (to replace display instead of appending)
+        var value1;
+        var currentOperator;
+        // Function to handle all calculator button clicks
+        function buttonClicked(value) {
+
+            if (newLine) {
+                // If it's a new line, replace the current input with the new value
+                document.getElementById("inputBox").value = value;
+                newLine = false; // Turn off the flag so next input is appended
+            } else {
+                // Otherwise, append the new value to the current input
+                var currentValue = document.getElementById("inputBox").value;
+                document.getElementById("inputBox").value = currentValue + value;
+            }
+        }
+
+        // Function to handle the AC button (not implemented yet)
+        function acBtn() {
+            document.getElementById("inputBox").value = "0"; // Resets the input box to 0
+            newLine = true; // Resets the flag for new entries
+        }
+
+        function operatorClicked(operator) {
+            // This function will handle operator clicks (not implemented yet)
+            value1 = parseInt(document.getElementById("inputBox").value); // Gets the current input value
+            currentOperator = operator; // Stores the current operator
+            newLine = true; // Sets the flag for a new entry
+            
+        }
+
+        // Function to handle the equals button
+        function equalsClicked(){
+            var value2 = parseInt(document.getElementById("inputBox").value); // Gets the second input value
+            var result;
+
+            // Perform the operation based on the current operator
+            switch(currentOperator) {
+                case '+':
+                    result = value1 + value2;
+                    break;
+                case '-':
+                    result = value1 - value2;
+                    break;
+                case 'x':
+                    result = value1 * value2;
+                    break;
+                case '/':
+                    result = value1 / value2;
+                    break;
+                default:
+                    result = "Error"; // In case of an unknown operator
+            }
+
+            document.getElementById("inputBox").value = result; // Display the result in the input box
+            newLine = true; // Reset for a new entry
+        }
+    </script>
+</body>
+</html>

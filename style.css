@@ -1,0 +1,44 @@
+table{
+    color: #fff;
+    text-align: center;
+    border-collapse:collapse;
+    font: normal 3em/1em Arial, Helvetica, sans-serif;
+}
+
+tr{
+    height: 16.02vh;
+    background-color: #4e494d;
+}
+td{
+    width: 25vw;
+    border: 1px solid #4e494d;
+    cursor: pointer;
+}
+
+#inputBox{
+    width: 99%;
+    background-color: #4e494d;
+    color: #fff;
+    text-align: right;
+    font-size: 2em;
+    border: none;
+}
+
+.digiBtn{
+    background-color: #ffc800;
+    color: #fff;
+}
+
+.operatorBtn{
+    background-color: #ff6f00;
+    color: #fff;
+}
+
+.acOp{
+    background-color: #ff0000;
+    color: #fff;
+}
+.equalsBtn{
+    background-color: #00ff00;
+    color: #fff;
+}
